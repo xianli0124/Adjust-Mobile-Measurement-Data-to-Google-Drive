@@ -65,7 +65,10 @@ class Google_Sheets_Connection:
         file_list = self.drive.ListFile({'q': "'" + self.folder_id + "' in parents and trashed=false"}).GetList()
         files = {i['title'] : i['id'] for i in file_list}
         self.file_list = files
-
+        
+    '''
+    Files must be named "<network> <start_date>_<end_date>.xlsx"
+    '''
     def delete_old_files(self):
         keys = self.file_list.keys()
         delete_file_list = []
